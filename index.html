@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="assets\favicon.ico">
+  <title>Millie d'Souza Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.cdnfonts.com/css/mustasurma" rel="stylesheet">
+  <style>
+    /* Only apply hover animation on devices wider than 768px */
+    @media (min-width: 768px) {
+      .text-layer-top {
+        opacity: 0;
+        letter-spacing: -0.8vmin;
+        transform: scale(0.8) translateY(0px);
+        /* transition: all 0.1s ease-out; */
+      }
+
+      .hover-group:hover .text-layer-top {
+        opacity: 1;
+        letter-spacing: -0.2vmin;
+        transform: scale(1) translateY(0.5vh);
+        transition: all 0.2s ease-out;
+      }
+
+      .text-layer-bottom {
+        transform: scale(1) translateY(8vmax);
+      }
+
+      /* .hover-group:hover  */
+      /* .text-layer-bottom {
+        opacity: 1;
+        /* letter-spacing: 0.2vmin; 
+        transform: scale(1) translateY(4vh);
+        transition: all 0.01s ease-out;
+      } */
+    }
+
+    /* On mobile (width < 768px): text always visible and positioned statically */
+    @media (max-width: 767px) {
+      .text-layer {
+        opacity: 1;
+        /* transform: none; */
+      }
+
+      .text-layer-top {
+        transform: translateY(-3min);
+      }
+    }
+  </style>
+  <script>
+    window.addEventListener("load", () => {
+      const preloader = document.getElementById("preloader");
+      preloader.classList.add("opacity-0");
+
+      // Wait for fade-out to finish before removing it from the DOM
+      setTimeout(() => {
+        preloader.style.display = "none";
+      }, 700); // matches Tailwind's duration-700
+    });
+  </script>
+
+</head>
+
+<!-- bg-[url(assets/backgroundpaper.png)] bg-repeat-y bg-cover -->
+
+<body class="flex items-center justify-center min-h-screen bg-[#E1E4EA]" onclick="window.location.href='landing.html'">
+  <div class="hover-group relative cursor-pointer">
+
+
+    <!-- Image -->
+    <img src="landing.png" alt="Landing" class="w-[15vw] max-w-sm mx-auto object-contain" />
+
+    <!-- Top Text -->
+    <div class="text-layer text-layer-top text-center text-[#394448] text-[2vmax] font-[Mustasurma]">
+      MIllIe d'Souza
+      <!-- MILLIE D'SOUZA -->
+    </div>
+    <!-- Bottom Text -->
+    <div class="text-layer text-layer-bottom text-center text-[#394448] text-[1vmax] font-bold">
+      (click anywhere to continue)
+    </div>
+  </div>
+
+  <!-- Preloader Overlay -->
+  <div id="preloader"
+    class="fixed inset-0 flex items-center justify-center z-50 transition-opacity duration-700">
+    <div class="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+  </div>
+
+</body>
+
+</html>
