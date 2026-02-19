@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="assets\favicon.ico">
+    <title>Film & Media - Millie d'Souza</title>
+
+    <!-- Preloader Overlay -->
+    <div id="preloader" class="fixed inset-0 flex items-center justify-center z-50 transition-opacity duration-700">
+        <div class="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin">
+            <img src="assets\favicon.ico" />
+        </div>
+    </div>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .class {
+            display: block;
+            width: 100vw;
+            height: auto;
+        }
+
+        .lightbox {
+            position: fixed;
+            z-index: 10;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(1, 1, 1, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            padding: 1vmax;
+        }
+
+        .lb_inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 70vw;
+            max-height: 85vh;
+            background-color: #E8E3DD;
+        }
+
+        .lb_content {
+            height: 100%;
+        }
+
+        .lb_close {
+            background: none;
+            border: none;
+            outline: none;
+            position: absolute;
+            top: -2rem;
+            right: -2rem;
+            padding: 0 0.6vmax;
+            font-size: xx-large;
+            color: rgba(229, 224, 218, 1);
+        }
+
+        .lb_close:hover {
+            color: rgba(229, 224, 218, 0.4);
+        }
+
+        .lb_btn {
+            /* padding: 8vw; */
+            width: 10vw;
+            height: 10vw;
+            font: 1vmax 'Courier New', Courier, monospace;
+            letter-spacing: 0.1vmax;
+            background: #E8E3DD;
+        }
+
+        .lb_btn:hover {
+            font: 1.5vmax;
+            background: #c9cdcf;
+        }
+    </style>
+    <div class="lightbox" id="lightbox" style="display:none;">
+        <div class="lb_inner">
+            <button type="button" class="lb_close">&times;</button>
+            <div class="lb_content">
+                content
+            </div>
+        </div>
+    </div>
+    <script>
+        window.addEventListener("load", () => {
+            const preloader = document.getElementById("preloader");
+            preloader.classList.add("opacity-0");
+
+            // Wait for fade-out to finish before removing it from the DOM
+            setTimeout(() => {
+                preloader.style.display = "none";
+            }, 700); // matches Tailwind's duration-700
+        });
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("page-header").innerHTML = data;
+            });
+        fetch("footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("page-footer").innerHTML = data;
+            });
+    </script>
+</head>
+
+<body class="bg-[#161619]">
+
+    <!-- <script type="module" src="lightbox/main.js"></script> -->
+
+    <div id="page-header"></div>
+    <div id="page-content" class="mb-auto">
+        <div id="media">
+            <img src='assets\landing\media\media0.png' alt="media-header" />
+            <div class="shth">
+                <button class="absolute left-[7vw] mt-[36.3vw] drop-shadow-2xl lb_btn"
+                    onclick="show('SHTH_SCREENPLAY.pdf')">SCREENPLAY</button>
+                <button class="absolute left-[18.4vw] mt-[36.3vw] drop-shadow-2xl lb_btn"
+                    onclick="show('SHTH_Storyboards.pdf')">STORYBOARDS</button>
+                <button class="absolute left-[29.6vw] mt-[36.3vw] drop-shadow-2xl lb_btn"
+                    onclick="show('SHTH_SHOTLIST.pdf')">SHOTLIST</button>
+                <img src='assets\landing\media\media1.png' />
+            </div>
+            <img src='assets\landing\media\media2.png' />
+            <div class="senior">
+                <iframe class="absolute left-[10vw] mt-[36vw] drop-shadow-2xl"
+                    style="width:calc(24vw * 1);height:calc((24vw / 16) * 9);"
+                    src="https://www.youtube.com/embed/qU7FRiApU_E" frameborder="0" gesture="media"
+                    allow="autoplay; encrypted-media;" allowfullscreen></iframe>
+                <button class="absolute left-[35vw] mt-[36.3vw] drop-shadow-2xl lb_btn"
+                    onclick="show('Senior_Storyboards.pdf')">STORYBOARDS</button>
+                <img src='assets\landing\media\media3.png' />
+            </div>
+            <img src='assets\landing\media\media4.png' />
+            <div class="numismatist">
+                <iframe class="absolute left-[10vw] mt-[36vw] drop-shadow-2xl"
+                    style="width:calc(24vw * 1);height:calc((24vw / 16) * 9);"
+                    src="https://www.youtube.com/embed/lw_tRhE7Tnc" frameborder="0" gesture="media"
+                    allow="autoplay; encrypted-media;" allowfullscreen></iframe>
+                <img src='assets\landing\media\media5.png' />
+            </div>
+            <img src='assets\landing\media\media6.png' />
+            <div class="shayad">
+                <button class="absolute left-[18.4vw] mt-[36.3vw] drop-shadow-2xl lb_btn"
+                    onclick="show('Shayad_Storyboards.pdf')">STORYBOARDS</button>
+                <img src='assets\landing\media\media7.png' />
+            </div>
+        </div>
+    </div>
+    <div id="page-footer"></div>
+</body>
+<script>
+    const LB = document.querySelector('#lightbox');
+    const lbContent = LB.querySelector(".lb_content");
+
+    const closeLB = () => {
+        LB.style.display = "none";
+        lbContent.innerHTML = "";
+    };
+
+    LB.addEventListener("mousedown", e => {
+        if (e.target.matches('#lightbox')) {
+            closeLB();
+        }
+    })
+
+    LB.querySelector(".lb_close").addEventListener("click", () => {
+        closeLB();
+    });
+
+    function show(file_ad) {
+        console.log(file_ad);
+        const lbContent = document.querySelector("#lightbox .lb_content");
+
+        document.querySelector("#lightbox").style.display = null;
+
+        // lbContent.innerHTML = file_ad;
+        // lbContent.innerHTML = ""
+        lbContent.innerHTML = `
+        <iframe
+            src="assets/lb/`+ file_ad + `"
+            width="100%"
+            height="100%"
+            style="border:none"
+            title="Non-downloadable PDF Viewer"
+        ></iframe>
+        `;
+    }
+    // document.getElementById("media").outerHTML = "<img src='assets\\landing\\media\\media0.png'/>";
+</script>
+
+
+</html>

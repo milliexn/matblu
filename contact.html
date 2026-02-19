@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="assets\favicon.ico">
+    <title>Millie d'Souza Portfolio</title>
+
+    <!-- Preloader Overlay -->
+    <div id="preloader" class="fixed inset-0 flex items-center justify-center z-50 transition-opacity duration-700">
+        <div class="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin">
+            <img src="assets\favicon.ico" />
+        </div>
+    </div>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .class {
+            display: block;
+            width: 100vw;
+            height: auto;
+        }
+
+    </style>
+    <script>
+        window.addEventListener("load", () => {
+            const preloader = document.getElementById("preloader");
+            preloader.classList.add("opacity-0");
+
+            // Wait for fade-out to finish before removing it from the DOM
+            setTimeout(() => {
+                preloader.style.display = "none";
+            }, 700); // matches Tailwind's duration-700
+        });
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("page-header").innerHTML = data;
+            });
+        fetch("footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("page-footer").innerHTML = data;
+            });
+    </script>
+</head>
+
+<body class="bg-[#161619]">
+
+    <!-- <script type="module" src="lightbox/main.js"></script> -->
+
+    <div id="page-header"></div>
+    <div id="page-content" class="mb-auto">
+
+        <!-- <img src="assets\landing\01.png" alt="Image 1" /> -->
+        <!-- <img src="assets\landing\02.png" alt="Image 2" /> -->
+        <div class="relative">
+            <img src="assets\landing\02.png" alt="Image 2" />
+
+            <!-- Link Grid -->
+            <div class="absolute bottom-[9.5%] right-[2%] grid grid-cols-2 grid-rows-2 gap-x-[1vw] gap-y-[2vw]">
+                <a href="https://behance.net/matrikablues" target="_blank"
+                    class="text-[0.6vw] text-black/50 bg-black/15 hover:bg-[#394448]/15 px-[12vw] py-[0.6vw] rounded-md transition">
+                    L
+                </a>
+                <a href="https://instagram.com/matrikablues" target="_blank"
+                    class="text-[0.6vw] text-black/50 bg-black/15 hover:bg-[#394448]/15 px-[12vw] py-[0.6vw] rounded-md transition">
+                    L
+                </a>
+                <a href="https://youtube.com/@matrikablues" target="_blank"
+                    class="text-[0.6vw] text-black/50 bg-black/15 hover:bg-[#394448]/15 px-[12vw] py-[0.6vw] rounded-md transition">
+                    L
+                </a>
+                <a href="mailto:matrikablues@gmail.com" target="_blank"
+                    class="text-[0.6vw] text-black/50 bg-black/15 hover:bg-[#394448]/15 px-[12vw] py-[0.6vw] rounded-md transition">
+                    L
+                </a>
+            </div>
+
+        </div>
+        <img src="assets\landing\03.png" alt="Image 3" />
+    </div>
+    <div id="page-footer"></div>
+</body>
+
+</html>

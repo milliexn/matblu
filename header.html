@@ -1,0 +1,44 @@
+<link href="https://fonts.cdnfonts.com/css/cloister-black" rel="stylesheet">
+<nav class="w-full bg-[#E8E3DD] text-black shadow-md"  style="font-family: 'Cloister Black', sans-serif;">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+
+        <!-- Logo -->
+        <a href="index.html" class="text-xl font-bold">
+            <img src="assets/favicon.ico" alt="Logo" class="w-[2vw] max-w-sm mx-auto object-contain" />
+        </a>
+
+        <!-- Hamburger button (mobile) -->
+        <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+
+        <!-- Nav links -->
+        <div id="nav-links" class="hidden md:flex space-x-7 text-xl">
+            <a href="contact.html" class="hover:underline decoration-[#111111] decoration-3.5">Contact</a>
+            <a href="film.html" class="hover:underline decoration-[#6695D3] decoration-3.5">Media</a>
+            <a href="art.html" class="hover:underline decoration-[#9DD365] decoration-3.5">Art</a>
+            <a href="design.html" class="hover:underline decoration-[#D26565] decoration-3.5">Design</a>
+        </div>
+    </div>
+
+    <!-- Mobile dropdown menu -->
+    <div id="mobile-menu" class="hidden px-4 pb-4 space-y-2">
+        <a href="film.html" class="block">Media</a>
+        <a href="art.html" class="block">Art</a>
+        <a href="design.html" class="block">Design</a>
+    </div>
+
+    <script>
+        // Hamburger toggle
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggle = document.getElementById("menu-toggle");
+            const mobileMenu = document.getElementById("mobile-menu");
+
+            toggle.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+            });
+        });
+    </script>
+</nav>
